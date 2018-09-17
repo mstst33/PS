@@ -1,2 +1,2 @@
-# Programmers
-For solving problems on programmers site
+# PS
+For solving problems
