@@ -114,12 +114,12 @@ int solution(int n, vector<int> cores) {
     }
 
     // 모든 코어가 동일한 최소, 최대 값을 가진다고 가정할 때 최대와 최소 걸리는 시간을 구한다
-    mintime = (mincore * n) / size;
-    maxtime = (maxcore * n) / size;
+    mintime = (mincore * (n - size)) / size;
+    maxtime = (maxcore * (n - size)) / size;
 
     printf("mincore[%d],maxcore[%d]\n", mincore, maxcore);
 
-    while(mintime < maxtime)
+    while(mintime <= maxtime)
     {
         int corework = size; // 작업 시작부터 코어 개수 만큼 작업이 할당 된다
         int currentwork = 0;
@@ -139,7 +139,7 @@ int solution(int n, vector<int> cores) {
         // n이 현재 시점(midtime)에서 코어들의 총 작업량보다 크다면 최소 시간(mintime)을 midtime 으로 끌어 올린다.
         // n <= (corework - currentwork) 경우는 반대쪽에 있으므로 최대 시간(maxtime)을 끌어 내린다 
         if(n > corework) mintime = midtime + 1;
-        else if(n <= (corework - currentwork)) maxtime = midtime;
+        else if(n <= (corework - currentwork)) maxtime = midtime - 1;
         else
         {
             // corework - currentwork < n <= corework 사이에 있으면
